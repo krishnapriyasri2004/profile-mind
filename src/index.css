@@ -1,0 +1,83 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    color-scheme: light;
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+
+  body {
+    overflow-x: clip;
+  }
+
+  .dark body {
+    letter-spacing: 0.005em;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+}
+
+@keyframes editorial-marquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-editorial-marquee {
+  animation: editorial-marquee 38s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-editorial-marquee {
+    animation: none;
+  }
+}
+
+@media print {
+  @page {
+    margin: 0.45in;
+    size: letter portrait;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #09090b !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .print-only-resume {
+    display: block !important;
+    position: static !important;
+    width: 100% !important;
+    max-width: none !important;
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: #ffffff !important;
+    color: #09090b !important;
+  }
+}
